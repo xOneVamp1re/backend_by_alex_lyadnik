@@ -39,7 +39,7 @@ export class AuthGuard implements CanActivate {
       user = {
         sub: payload.sub,
         email: payload.email,
-        name: payload.name,
+        username: payload.username,
         isAdmin: payload.isAdmin,
       };
 
@@ -88,11 +88,11 @@ export class AuthGuard implements CanActivate {
       payload !== null &&
       'sub' in payload &&
       'email' in payload &&
-      'name' in payload &&
+      'username' in payload &&
       'isAdmin' in payload &&
       typeof (payload as JwtPayload).sub === 'string' &&
       typeof (payload as JwtPayload).email === 'string' &&
-      typeof (payload as JwtPayload).name === 'string' &&
+      typeof (payload as JwtPayload).username === 'string' &&
       typeof (payload as JwtPayload).isAdmin === 'boolean'
     );
   }
