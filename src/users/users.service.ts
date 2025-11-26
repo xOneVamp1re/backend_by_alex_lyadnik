@@ -18,7 +18,7 @@ export class UsersService {
 
   // СОЗДАНИЕ пользователя
   async create(createUserDto: CreateUserDto): Promise<UserDocument> {
-    const { email, password, name } = createUserDto;
+    const { email, password, username } = createUserDto;
 
     // Проверяем существует ли пользователь
     const existingUser = await this.userModel.findOne({
@@ -36,7 +36,7 @@ export class UsersService {
     const user = new this.userModel({
       email: email.toLowerCase(),
       password: hashedPassword,
-      name,
+      username,
       isAdmin: false,
     });
 
@@ -97,7 +97,7 @@ export class UsersService {
     }
 
     // Обновляем остальные поля
-    if (updateUserDto.name) user.name = updateUserDto.name;
+    if (updateUserDto.username) user.username = updateUserDto.username;
     if (updateUserDto.isAdmin !== undefined)
       user.isAdmin = updateUserDto.isAdmin;
 
